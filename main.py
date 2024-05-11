@@ -11,7 +11,7 @@ def get_angle(a, b, c):
     return ang + 360 if ang < 0 else ang
 
 
-if __name__ == '__main__':
+def main():
     cap = cv2.VideoCapture(0)
     hand_detector = mp.solutions.hands.Hands(
         max_num_hands=1
@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
         if hands:
             for hand in hands:
-                drawing_utils.draw_landmarks(frame, hand)
+                # drawing_utils.draw_landmarks(frame, hand)
                 landmarks = hand.landmark
 
                 palm_x, palm_y = 0, 0
@@ -49,9 +49,6 @@ if __name__ == '__main__':
                     if id == 0:  # telapak tangan
                         cv2.circle(img=frame, center=(x, y), radius=10, color=(0, 255, 255))
                         palm_x, palm_y = x, y
-                        # mouse_x = screen_width/frame_width * x
-                        # mouse_y = screen_height/frame_height * y
-                        # pyautogui.moveTo(mouse_x, mouse_y)
 
                     if id == 4:  # ibu jari
                         cv2.circle(img=frame, center=(x, y), radius=10, color=(0, 255, 0))
@@ -69,8 +66,20 @@ if __name__ == '__main__':
                 angle = int(get_angle((index_x, index_y), (palm_x, palm_y), (thumb_x, thumb_y)))
                 cv2.putText(frame, f"{angle}", (palm_x, palm_y), font, 1, (100, 255, 0), 1, cv2.LINE_AA)
 
-                # 
+                # gerakan mouse
+                mouse_x = screen_width / frame_width * palm_x
+                mouse_y = screen_height / frame_height * palm_y
+                pyautogui.moveTo(mouse_x, mouse_y)
 
+                # Right Click
+                if 10 > angle:
+                    pyautogui.rightClick()
+
+                # Left Click
+                if angle > 350:
+                    pyautogui.leftClick()
+                else:
+                    pyautogui.mouseUp()
 
         # FPS SHOW
         new_frame_time = time.time()
@@ -82,3 +91,7 @@ if __name__ == '__main__':
 
         cv2.imshow('Hand Gesture Mouse', frame)
         cv2.waitKey(1)
+
+
+if __name__ == '__main__':
+    main()
