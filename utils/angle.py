@@ -9,8 +9,10 @@ def get_angle(a, b, c):
             return 0  # Same direction
         else:
             return np.pi / 2  # Perpendicular
-
-    buffer = (m1 - m2) / (1 + (m1 * m2))
+    try:
+        buffer = (m1 - m2) / (1 + (m1 * m2))
+    except ZeroDivisionError:
+        buffer = 0
     theta = np.arctan(buffer)
     theta = np.abs(theta)
     theta = np.degrees(theta)
