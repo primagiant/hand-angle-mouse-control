@@ -26,6 +26,8 @@ def main():
                 with open(csv_path, 'a', newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([pose, *landmark_list])
+        print("a block of file have been transform into dataset")
+    print("Completed")
 
 
 def get_landmarks(image, hands):
@@ -67,50 +69,50 @@ def get_landmarks(image, hands):
                 palm_coor = (x, y)
 
             # ibu jari
-            if idh == 2:  # pangkal ibu jari
+            if idh == 1:  # pangkal ibu jari
                 base_thumb_coor = (x, y)
 
-            if idh == 3:  # tengah ibu jari
+            if idh == 2:  # tengah ibu jari
                 middle_thumb_coor = (x, y)
 
             if idh == 4:  # ujung ibu jari
                 peak_thumb_coor = (x, y)
 
             # telunjuk
-            if idh == 6:  # pangkal telunjuk
+            if idh == 5:  # pangkal telunjuk
                 base_index_coor = (x, y)
 
-            if idh == 7:  # tengah telunjuk
+            if idh == 6:  # tengah telunjuk
                 middle_index_coor = (x, y)
 
             if idh == 8:  # ujung telunjuk
                 peak_index_coor = (x, y)
 
             # jari tengah
-            if idh == 10:  # pangkal jari tengah
+            if idh == 9:  # pangkal jari tengah
                 base_middle_coor = (x, y)
 
-            if idh == 11:  # tengah jari tengah
+            if idh == 10:  # tengah jari tengah
                 middle_middle_coor = (x, y)
 
             if idh == 12:  # ujung jari tengah
                 peak_middle_coor = (x, y)
 
             # jari manis
-            if idh == 14:  # pangkal jari manis
+            if idh == 13:  # pangkal jari manis
                 base_ring_coor = (x, y)
 
-            if idh == 15:  # tengah jari manis
+            if idh == 14:  # tengah jari manis
                 middle_ring_coor = (x, y)
 
             if idh == 16:  # ujung jari manis
                 peak_ring_coor = (x, y)
 
             # jari kelingking
-            if idh == 18:  # pangkal jari kelingking
+            if idh == 17:  # pangkal jari kelingking
                 base_little_coor = (x, y)
 
-            if idh == 19:  # tengah jari kelingking
+            if idh == 18:  # tengah jari kelingking
                 middle_little_coor = (x, y)
 
             if idh == 20:  # ujung jari kelingking

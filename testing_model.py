@@ -1,10 +1,14 @@
 import copy
 import csv
 
+import cv2
 import mediapipe as mp
 
 from utils.angle import *
 from utils.draw import *
+from model.hand_gesture_classifier import HandGestureClassifier
+
+class_name = ['fist', 'index', 'middle', 'palm', 'two_fingger_close', 'v_gest']
 
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -14,6 +18,8 @@ def main():
     hand_detector = mp.solutions.hands.Hands(
         max_num_hands=1
     )
+
+    hand_classifier = HandGestureClassifier()
 
     mode = 0
 
@@ -40,6 +46,10 @@ def main():
 
         if results.multi_hand_landmarks is not None:
             landmark_list = get_landmarks(debug_image, results.multi_hand_landmarks)
+            hand_sign_id = hand_classifier(landmark_list)
+            cv2.putText(debug_image, "CLASSIFY:" + class_name[hand_sign_id], (10, 60),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 1,
+                        cv2.LINE_AA)
             logging_csv(number, mode, landmark_list)
 
         debug_image = draw_info(debug_image, mode, number)
