@@ -3,9 +3,7 @@ import os
 
 import mediapipe as mp
 
-from utils.angle import *
 from utils.draw import *
-
 
 def main():
     hand_detector = mp.solutions.hands.Hands(
@@ -15,7 +13,7 @@ def main():
     for root, dirs, files in os.walk(d_foldername):
         for file in files:
             relative_path = os.path.relpath(os.path.join(root, file), d_foldername)
-            pose = root.split("\\")[2]
+            pose = os.path.basename(root)
             image = cv2.imread(os.path.join(d_foldername, relative_path))
             image = cv2.flip(image, 1)
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -26,8 +24,9 @@ def main():
                 with open(csv_path, 'a', newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([pose, *landmark_list])
-        print("a block of file have been transform into dataset")
+        print("A block of files has been transformed into the dataset")
     print("Completed")
+
 
 
 def get_landmarks(image, hands):

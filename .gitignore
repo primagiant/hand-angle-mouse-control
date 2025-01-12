@@ -1,4 +1,4 @@
 .idea/
 .venv/
-dataset/
+dataset*/
 model/pose_detector

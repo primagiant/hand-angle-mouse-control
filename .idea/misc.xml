@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.10 (hand_gesture_mouse_control)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (hand_gesture_mouse_control)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="$USER_HOME$/Code/miniconda3/envs/hand-mouse" project-jdk-type="Python SDK" />
 </project>
