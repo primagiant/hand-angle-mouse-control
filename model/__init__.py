@@ -1,1 +1,3 @@
 from model.hand_gesture_classifier import HandGestureClassifier
+from model.hand_gesture_random_classifier import HandGestureRandomClassifier
+from model.hand_gesture_random_forest_classifier import HandGestureRandomForestClassifier

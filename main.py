@@ -36,7 +36,7 @@ def main():
             palm_x = coordinates_list[0][0]
             palm_y = coordinates_list[0][1]
             mouse_x = screen_width / frame_width * palm_x
-            mouse_y = screen_height / frame_height * palm_ya
+            mouse_y = screen_height / frame_height * palm_y
 
             if abs(mouse_x - prev_mouse_x) > SMOOTHING or abs(mouse_y - prev_mouse_y) > SMOOTHING:
                 pyautogui.moveTo(mouse_x, mouse_y)
